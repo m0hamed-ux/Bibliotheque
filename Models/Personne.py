@@ -1,5 +1,5 @@
 class Personne:
-    def _init_(self,nom,prenom):
+    def __init__(self,nom,prenom):
         if not isinstance(nom,str):
             raise Exception("le nom est invalid!")
         elif not isinstance(prenom,str):
@@ -26,5 +26,5 @@ class Personne:
         else:
             self.__prenom=prenom
     
-    def _str_(self):
+    def __str__(self):
         return f"Nom : {self.__nom}, Prenom : {self.__prenom}"
