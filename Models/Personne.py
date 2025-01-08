@@ -1,4 +1,4 @@
-class Perssonne:
+class Personne:
     def _init_(self,nom,prenom):
         if not isinstance(nom,str):
             raise Exception("le nom est invalid!")
@@ -24,7 +24,7 @@ class Perssonne:
         if not isinstance(prenom,str):
             raise Exception("le prenom est invalid!")
         else:
-            self.prenom=prenom
+            self.__prenom=prenom
     
     def _str_(self):
-        return f"Nom : {self.__nom}, Prenom : {self.prenom}"
+        return f"Nom : {self.__nom}, Prenom : {self.__prenom}"
