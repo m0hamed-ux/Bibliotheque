@@ -27,4 +27,4 @@ class Perssonne:
             self.prenom=prenom
     
     def _str_(self):
-        return f"Nom : {self.__nom} , Prenom : {self.prenom}"
+        return f"Nom : {self.__nom}, Prenom : {self.prenom}"
