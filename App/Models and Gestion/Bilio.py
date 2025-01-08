@@ -12,7 +12,7 @@ class Biblio:
         print("---Saisir les information de livre :---")
         code = input("Code (Ex : L1234) : ")
         for Livre in self.__livres:
-            if Livre.getCode() == code:
+            if Livre.get_code() == code:
                 raise Exception("Il existe déjà un livre avec ce code !")
         titre = input("Titre : ")
         print("Les Informations d'auteur : ")
