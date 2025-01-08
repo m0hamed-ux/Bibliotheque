@@ -98,5 +98,3 @@ while True:
         break
     else:
         print(colored("Invalid","red"))
-
-    

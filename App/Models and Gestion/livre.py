@@ -18,8 +18,7 @@ class livre:
             self.__titre=titre
             self.__nbr_ttl_exemplaire=nbr_ttl_exemplaire
             self.__nbr_exemplaire_disponible=nbr_exemplaire_disponible
-            livre.nbEmprunt += 1
-            self.nbEmprunt=livre.nbEmprunt
+            self.__nbrEmprunt = livre.nbEmprunt
 
             
 
@@ -64,7 +63,8 @@ class livre:
             self.__nbr_exemplaire_disponible=new_value2
         else:
              raise Exception(" le nombre des exemplaires disponibles doit etre un entier positif inferieur au nombre des exemplaires")
-
+    def addNbrEmprunt(self):
+        self.__nbrEmprunt += 1
     #methoode
     def LivreDisponible(self):
         return self.get_nbr_exemplaire_disponible > 0

@@ -40,7 +40,7 @@ class Biblio:
             self.__adherents.append(Adh)
     def rechercherAdherent(self,code):
         for adherent in  self.__adherents :
-            if adherent.get_code() == code : 
+            if adherent.getCode() == code : 
                 return adherent
         return None
         
@@ -57,7 +57,8 @@ class Biblio:
             dateRetourPrevue = dateEmprunt + timedelta(days=3)
             emprunt = Emprunt(livre, adherent, dateEmprunt, dateRetourPrevue, dateREffective=None)
             self.__emprunts.append(emprunt)
-            livre.set_nbr_exemplaire_disponible(livre.set_nbr_exemplaire_disponible()-1)
+            livre.set_nbr_exemplaire_disponible(livre.get_nbr_exemplaire_disponible()-1)
+            livre.addNbrEmprunt()
 
     def retourEmprunt(self,codeEmprunt):
         for elt in self.__emprunts:
