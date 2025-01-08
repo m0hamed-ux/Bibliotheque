@@ -72,5 +72,5 @@ class Emprunt:
             etat+="non rendu"
         print(etat)     
 #--------test--------------
-emp=Emprunt("ALLALI",Adherent("tri","im",8,1,2025),date(2025,1,8),date(2025,4,3),date(2025,4,5))
-emp.etatEmprunt()        
+# emp=Emprunt("ALLALI",Adherent("tri","im",8,1,2025),date(2025,1,8),date(2025,4,3),date(2025,4,5))
+# emp.etatEmprunt()
