@@ -9,11 +9,14 @@ class Biblio:
         self.__adherents=[]
         self.__emprunts=[]
     def ajouterLivre(self):
-        print("Saisir les information de livre :")
-        code = input("Code (Ex : L0000): ")
+        print("---Saisir les information de livre :---")
+        code = input("Code (Ex : L1234) : ")
+        for Livre in self.__livres:
+            if Livre.getCode() == code:
+                raise Exception("Il existe déjà un livre avec ce code !")
         titre = input("Titre : ")
         print("Les Informations d'auteur : ")
-        auteur = Auteur(input(" Nom : "), input(" Prenom : "), input(" Code (Ex : A0000) : "))
+        auteur = Auteur(input("├── Nom : "), input("├── Prenom : "), input("├── Code (Ex : A1234) : "))
         nbr_ttl_exemplaire = int(input("Le nombre total des exemplaires : "))
         nbr_exemplaire_disponible = int(input("Le nombre des exemplaires disponibles : "))
         if nbr_ttl_exemplaire < nbr_exemplaire_disponible:
@@ -21,13 +24,13 @@ class Biblio:
         lvr = livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_exemplaire_disponible)
         self.__livres.append(lvr)
     def ajouterAdherent(self):
-        print("Saisir les information de l'adherent :")
+        print("---Saisir les information de l'adherent :---")
         nom = input("Nom : ")
         prenom = input("Prenom : ")
         print("La date d’adhésion : ")
-        day = int(input("\tJour : "))
-        month = int(input("\tMois : "))
-        year = int(input("\tAnnee : "))
+        day = int(input("├── Jour : "))
+        month = int(input("├── Mois : "))
+        year = int(input("├── Annee : "))
         try:
             dateAdhesion = date(year, month, day)
         except Exception as e:
@@ -46,30 +49,21 @@ class Biblio:
             if livre.get_code() == code : 
                 return livre 
         return None
-    def ajouterEmprunt(self,codeA,codeL):
-        pass
-    def retourEmprunt(self,codeEmprunt):
-        pass   
-    def topEmprunts(self):
-        pass
-    def emprunteurs(self):
-        pass
-    def datePossibilitéEmprunt(self,codeL):
-        pass
+    
 
+
+    
     def AfficherLivres(self):
+        if len(self.__livres) == 0:
+            raise Exception("la liste est vide")
         print("La list des livres : ")
         for livre in self.__livres:
-            print(f" - {livre}")
+            print(f"{livre}")
     def AfficherAdherents(self):
+        if len(self.__adherents) == 0:
+            raise Exception("la liste est vide")
         print("La list des adherents : ")
         for Adherent in self.__adherents:
-            print(f" - {Adherent}")
-
-a = Biblio()
-a.ajouterLivre()
-a.ajouterLivre()
-a.ajouterAdherent()
-a.ajouterAdherent()
-a.AfficherLivres()
-a.AfficherAdherents()
+            print(f"├── {Adherent}")
+    def Rapport(self):
+        print(f"Nombres des livres : {len(self.__livres)}\nNombres des adherents : {len(self.__adherents)}")
