@@ -52,7 +52,7 @@ class Biblio:
     def ajouterEmprunt(self, codeA, codeL):
         adherent = self.rechercherAdherent(int(codeA))
         livre = self.rechercherLivre(codeL)
-        if livre and adherent and livre.livreDisponible():
+        if livre and adherent and livre.LivreDisponible():
             dateEmprunt = date.today()
             dateRetourPrevue = dateEmprunt + timedelta(days=3)
             emprunt = Emprunt(livre, adherent, dateEmprunt, dateRetourPrevue, dateREffective=None)
