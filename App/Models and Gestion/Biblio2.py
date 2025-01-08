@@ -1,6 +1,7 @@
-from Models import livre
-from Models import Adherent
-from Models import Emprunt
+from livre import *
+from Adherent import *
+from Auteur import *
+from Emprunt import *
 from datetime import date
 class Biblio:
     def __init__(self):
@@ -9,14 +10,15 @@ class Biblio:
         self.__emprunts=[]
     def ajouterLivre(self):
         print("Saisir les information de livre :")
-        code = input("Code (Ex : L000): ")
+        code = input("Code (Ex : L0000): ")
         titre = input("Titre : ")
-        auteur = input("Auteur : ")
+        print("Les Informations d'auteur : ")
+        auteur = Auteur(input(" Nom : "), input(" Prenom : "), input(" Code (Ex : A0000) : "))
         nbr_ttl_exemplaire = int(input("Le nombre total des exemplaires : "))
         nbr_exemplaire_disponible = int(input("Le nombre des exemplaires disponibles : "))
         if nbr_ttl_exemplaire < nbr_exemplaire_disponible:
             raise Exception("le Le nombre total des exemplaires doit etre superieur de le nombre des exemplaires disponibles")
-        lvr = livre.livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_exemplaire_disponible)
+        lvr = livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_exemplaire_disponible)
         self.__livres.append(lvr)
     def ajouterAdherent(self):
         print("Saisir les information de l'adherent :")
@@ -31,7 +33,7 @@ class Biblio:
         except Exception as e:
             print(e)
         else:
-            Adh = Adherent.Adherent(nom, prenom, dateAdhesion)
+            Adh = Adherent(nom, prenom, dateAdhesion)
             self.__adherents.append(Adh)
     def rechercherAdherent(self,code):
         for adherent in  self.__adherents :
@@ -54,3 +56,20 @@ class Biblio:
         pass
     def datePossibilitéEmprunt(self,codeL):
         pass
+
+    def AfficherLivres(self):
+        print("La list des livres : ")
+        for livre in self.__livres:
+            print(f" - {livre}")
+    def AfficherAdherents(self):
+        print("La list des adherents : ")
+        for Adherent in self.__adherents:
+            print(f" - {Adherent}")
+
+a = Biblio()
+a.ajouterLivre()
+a.ajouterLivre()
+a.ajouterAdherent()
+a.ajouterAdherent()
+a.AfficherLivres()
+a.AfficherAdherents()

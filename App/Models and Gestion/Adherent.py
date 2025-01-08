@@ -17,4 +17,4 @@ class Adherent(Personne) :
     def getDateDateAdhésion(self):
         return self.__DateAdhésion
     def __str__(self):
-        return super().__str__()+f" / Le code est : {self.getCode()} et la date d'Adhésion : {self.DateAdhésion.day} . {self.DateAdhésion.month} . {self._DateAdhésion.year}"
+        return super().__str__()+f" / Le code est : {self.getCode()} et la date d'Adhésion : {self.getDateDateAdhésion().day}/{self.getDateDateAdhésion().month}/{self.getDateDateAdhésion().year}"

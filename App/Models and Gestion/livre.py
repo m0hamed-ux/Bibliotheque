@@ -8,9 +8,9 @@ class livre:
             raise Exception("Le code inserer doit commencer par la lettre 'L' majiscule suivie par quatre chiffre ")
         elif not isinstance(auteur,Auteur):
             raise Exception("INVALIDE !!")
-        elif not isinstance(nbr_ttl_exemplaire,int) or not isinstance(nbr_exemplaire_disponible,int):
+        elif (not isinstance(nbr_ttl_exemplaire,int)) or (not isinstance(nbr_exemplaire_disponible,int)):
             raise Exception("le nombre saisie doit etre un entier")
-        elif nbr_ttl_exemplaire < 0 and nbr_exemplaire_disponible> nbr_ttl_exemplaire:
+        elif nbr_ttl_exemplaire < 0 or nbr_exemplaire_disponible> nbr_ttl_exemplaire:
             raise Exception(" ERROR réviser les iformations donner !!")
         else:
             self.__code=code
@@ -67,3 +67,5 @@ class livre:
     #methoode
     def LivreDisponible(self):
         return self.get_nbr_exemplaire_disponible > 0
+    def __str__(self):
+        return f"Livre {self.__code} : Titre : {self.__titre}, Auteur : {self.__auteur}, Le nombre total des exemplaires : {self.__nbr_ttl_exemplaire}, Le nombre des exemplaires disponibles : {self.__nbr_exemplaire_disponible}"

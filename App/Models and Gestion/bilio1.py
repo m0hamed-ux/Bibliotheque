@@ -1,6 +1,8 @@
-from Models import Emprunt
-from Models import Adherent
-from datetime import *
+from livre import *
+from Adherent import *
+from Auteur import *
+from Emprunt import *
+from datetime import date
 class Biblio:
     def __init__(self):
         self.__livres=[]
