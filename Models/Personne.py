@@ -5,8 +5,8 @@ class Perssonne:
         elif not isinstance(prenom,str):
             raise Exception("le prenom est invalid!")
         else:
-            self.nom=nom
-            self.prenom=prenom
+            self.__nom=nom
+            self.__prenom=prenom
         
     def get_nom(self,nom):
         self.nom=nom
