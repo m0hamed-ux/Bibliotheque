@@ -55,7 +55,7 @@ while True:
                 print(colored("il n'y a pas de livre avec ce code!", "red"))
     elif choix == 5:
         try:
-            Bib.ajouterEmprunt(int(input("saisir le code de l'Adherent : ")), input("saisir le code de livre :"))
+            Bib.ajouterEmprunt(int(input("saisir le code de l'Adherent : ")), input("saisir le code de livre : "))
         except Exception as e:
             print(colored(e, "red"))
     elif choix == 6:
