@@ -1,6 +1,6 @@
 from Personne import *
 from re import *
-class Auteur(Perssonne):
+class Auteur(Personne):
     def _init_(self, nom, prenom, code):
         if match(code, "^A[0-9]{4}$"):
             super()._init_(nom, prenom)
