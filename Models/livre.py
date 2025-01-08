@@ -1,6 +1,7 @@
 import re
 from Auteur import *
 class livre:
+    nbEmprunt = 0
     def __init__(self,code,titre,auteur,nbr_ttl_exemplaire,nbr_exemplaire_disponible):
         self.template=r"^L\d{4}$"
         if not re.match(self.template,code):
@@ -17,6 +18,7 @@ class livre:
             self.__titre=titre
             self.__nbr_ttl_exemplaire=nbr_ttl_exemplaire
             self.__nbr_exemplaire_disponible=nbr_exemplaire_disponible
+            livre.nbEmprunt += 1
 
             
 
