@@ -62,14 +62,14 @@ class Biblio:
 
     def retourEmprunt(self,codeEmprunt):
         for elt in self.__emprunts:
-            if elt.getCode()==codeEmprunt:
+            if elt.getCode() == int(codeEmprunt):
                 elt.setDateRetourEffective(date.today)
                 elt.set_nbr_exemplaire_disponible(elt.set_nbr_exemplaire_disponible()+1)                         
     def topEmprunts(self):
-        max=self.__emprunts[0].getLivreEmprunte().nbEmprunt
-        for elt in self.__emprunts[1:len(self.__emprunts)]:
-            if elt.getLivreEmprunte().nbEmprunt>max:
-                max=elt.getLivreEmprunte().nbEmprunt
+        max=self.__emprunts[0].getLivreEmprunte().getNbrEmprunt() 
+        for elt in self.__emprunts:
+            if elt.getLivreEmprunte().getNbrEmprunt() > max:
+                max=elt.getLivreEmprunte().getNbrEmprunt() 
                 livreM=elt.getLivreEmprunte()
         return livreM
     def emprunteurs(self):

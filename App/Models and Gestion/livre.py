@@ -34,6 +34,8 @@ class livre:
         return  self.__nbr_ttl_exemplaire
     def get_nbr_exemplaire_disponible(self):
         return self.__nbr_exemplaire_disponible
+    def getNbrEmprunt(self):
+        return self.__nbrEmprunt
     
     #setters
 
