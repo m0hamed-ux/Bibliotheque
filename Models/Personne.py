@@ -8,7 +8,7 @@ class Perssonne:
             self.__nom=nom
             self.__prenom=prenom
         
-    def get_nom(self,nom):
+    def get_nom(self):
         return self.__nom
         
     def set_nom(self,nom):
@@ -17,7 +17,7 @@ class Perssonne:
         else:
             self.__nom=nom
         
-    def get_prenomm(self,prenom):
+    def get_prenomm(self):
         return self.__prenom
         
     def set_prenom(self,prenom):
