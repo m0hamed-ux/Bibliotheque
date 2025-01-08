@@ -1,9 +1,9 @@
 import re
-from Auteur import*
+from Auteur import *
 class livre:
     def __init__(self,code,titre,auteur,nbr_ttl_exemplaire,nbr_exemplaire_disponible):
-        template=r"^L\d{4}$"
-        if not re.match(template,code):
+        self.template=r"^L\d{4}$"
+        if not re.match(self.template,code):
             raise Exception("Le code inserer doit commencer par la lettre 'L' majiscule suivie par quatre chiffre ")
         elif not isinstance(auteur,Auteur):
             raise Exception("INVALIDE !!")
@@ -36,15 +36,31 @@ class livre:
     #setters
 
     def set_code(self,new_code):
-        self.__code=new_code
+        if re.match(self.template,new_code):
+            self.__code=new_code
+        else:
+            raise Exception("Le code inserer doit commencer par la lettre 'L' majiscule suivie par quatre chiffre ")
+    
     def set_titre(self,new_titre):
         self.__titre=new_titre
+
     def set_auteur(self,new_auteur):
-        self.__auteur=new_auteur
+        if isinstance(new_auteur,Auteur):
+            self.__auteur=new_auteur
+        else:
+            raise Exception("INVALIDE !!")
+    
     def set_nbr_ttl_exemplaire(self,new_value):
-        self.__nbr_ttl_exemplaire=new_value
+        if isinstance(new_value,int) and new_value > 0 :
+            self.__nbr_ttl_exemplaire=new_value
+        else:
+            raise Exception("le nombre saisie doit etre un entier positif")
+    
     def set_nbr_exemplaire_disponible(self,new_value2):
-        self.__nbr_exemplaire_disponible=new_value2
+        if isinstance(new_value2,int) and new_value2 < self.get_nbr_ttl_exemplaire() and new_value2> 0:
+            self.__nbr_exemplaire_disponible=new_value2
+        else:
+             raise Exception(" le nombre des exemplaires disponibles doit etre un entier positif inferieur au nombre des exemplaires")
 
     #methoode
     def LivreDisponible(self):
