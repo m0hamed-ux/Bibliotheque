@@ -11,7 +11,7 @@ class Emprunt:
             raise Exception("L'emprunteur du livre est invalide!")
         elif not isinstance(dateEmprunt,date) and dateEmprunt<date.today:
             raise Exception("La date d'emprunt est invalide!")
-        elif not isinstance(dateRPrevue,date) and dateRPrevue<date.today:
+        elif not isinstance(dateRPrevue,date) and dateRPrevue>date.today:
             raise Exception("La date de retour prévue est invalide!")
         elif not isinstance(dateREffective,date):
             raise Exception("La date de retour effective est invalide!")
@@ -47,7 +47,7 @@ class Emprunt:
         else:
             self.__EmprunteurLivre=value
     def setDateEmprunt(self,value):
-        if not isinstance(value,date) and value<date.today:
+        if not isinstance(value,date) and value==date.today:
             raise Exception("La date d'emprunt est invalide!")
         else:
             self.__dateEmprunt=value
@@ -63,10 +63,14 @@ class Emprunt:
             self.__dateRetourEffective=value
 #---------methodes-------------
     def etatEmprunt(self):
+        etat=""
         if self.__dateRetourEffective<self.__dateRetourPrevue:
-            return "En cours"
+           etat+="en cours"
         elif self.__dateRetourEffective==self.__dateRetourPrevue:
-            return "Rendu"
+            etat+="rendu"
         else:
-            return "Non rendu"
-        
+            etat+="non rendu"
+        print(etat)     
+#--------test--------------
+emp=Emprunt("ALLALI",Adherent("tri","im",8,1,2025),date(2025,1,8),date(2025,4,3),date(2025,4,5))
+emp.etatEmprunt()        
