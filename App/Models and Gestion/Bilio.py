@@ -40,7 +40,7 @@ class Biblio:
             self.__adherents.append(Adh)
     def rechercherAdherent(self,code):
         for adherent in  self.__adherents :
-            if adherent.getCode() == code : 
+            if adherent.getCode() == int(code) : 
                 return adherent
         return None
         
@@ -50,7 +50,7 @@ class Biblio:
                 return livre 
         return None
     def ajouterEmprunt(self, codeA, codeL):
-        adherent = self.rechercherAdherent(codeA)
+        adherent = self.rechercherAdherent(int(codeA))
         livre = self.rechercherLivre(codeL)
         if livre and adherent and livre.livreDisponible():
             dateEmprunt = date.today()
