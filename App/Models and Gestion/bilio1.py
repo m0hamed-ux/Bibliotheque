@@ -21,7 +21,12 @@ class Biblio:
                 elt.setDateRetourEffective(date.today)
                 elt.set_nbr_exemplaire_disponible(elt.set_nbr_exemplaire_disponible()+1)                         
     def topEmprunts(self):
-        pass
+        max=self.__emprunts[0].getLivreEmprunte().nbEmprunt
+        for elt in self.__emprunts[1:len(self.__emprunts)]:
+            if elt.getLivreEmprunte().nbEmprunt>max:
+                max=elt.getLivreEmprunte().nbEmprunt
+                livreM=elt.getLivreEmprunte()
+        return livreM        
     def emprunteurs(self):
         emprunteurs=[]
         for elt in self.__emprunts:

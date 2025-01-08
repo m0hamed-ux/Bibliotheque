@@ -19,6 +19,7 @@ class livre:
             self.__nbr_ttl_exemplaire=nbr_ttl_exemplaire
             self.__nbr_exemplaire_disponible=nbr_exemplaire_disponible
             livre.nbEmprunt += 1
+            self.nbEmprunt=livre.nbEmprunt
 
             
 
