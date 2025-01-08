@@ -1,11 +1,14 @@
+from livre import *
 from Adherent import *
+from Auteur import *
+from Emprunt import *
 from datetime import *
 class Emprunt:
     code=0
 #---------constructeur---------    
     def __init__(self,livreEmprunte,EmprunteurLivre,dateEmprunt,dateRPrevue,dateREffective):
         Emprunt.code+=1
-        if not isinstance(livreEmprunte,str):
+        if not isinstance(livreEmprunte,livre):
             raise Exception("Le nom de livre est invalide!")
         elif not isinstance(EmprunteurLivre,Adherent):
             raise Exception("L'emprunteur du livre est invalide!")
@@ -13,8 +16,6 @@ class Emprunt:
             raise Exception("La date d'emprunt est invalide!")
         elif not isinstance(dateRPrevue,date) and dateRPrevue>date.today:
             raise Exception("La date de retour prévue est invalide!")
-        elif not isinstance(dateREffective,date):
-            raise Exception("La date de retour effective est invalide!")
         else:
             self.__code=Emprunt.code
             self.__livreEmprunte=livreEmprunte
@@ -71,6 +72,8 @@ class Emprunt:
         else:
             etat+="non rendu"
         print(etat)     
+    def __str__(self):
+        return f"------Emprunt N° : {self.code}------\n├── Livre : {self.__livreEmprunte.getCode()}\n├── Emprunteur : {self.__EmprunteurLivre.getCode()}\n├── la date d’emprunt : {self.__dateEmprunt}\n├── la date de retour prévue : {self.__dateRetourPrevue}\n├── la date de retour effective : {self.__dateRetourEffective}"
 #--------test--------------
 # emp=Emprunt("ALLALI",Adherent("tri","im",8,1,2025),date(2025,1,8),date(2025,4,3),date(2025,4,5))
 # emp.etatEmprunt()

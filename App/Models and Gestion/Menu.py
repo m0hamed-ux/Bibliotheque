@@ -53,6 +53,16 @@ while True:
                 print(Livre)
             else:
                 print(colored("il n'y a pas de livre avec ce code!", "red"))
+    elif choix == 5:
+        try:
+            Bib.ajouterEmprunt(input("saisir le code de l'Adherent : "), input("saisir le code de livre :"))
+        except Exception as e:
+            print(colored(e, "red"))
+    elif choix == 6:
+        try:
+            Bib.retourEmprunt(input("saisir le code de l'Emprunt : "))
+        except Exception as e:
+            print(colored(e, "red"))
     elif choix == 7:
         try:
             Bib.AfficherLivres()
@@ -61,6 +71,25 @@ while True:
     elif choix == 8:
         try:
             Bib.AfficherAdherents()
+        except Exception as e:
+            print(colored(e, "red"))
+    elif choix == 9:
+        try:
+            Bib.topEmprunts()
+        except Exception as e:
+            print(colored(e, "red"))
+    elif choix == 10:
+        try: 
+            Bib.emprunteurs()
+        except Exception as e:
+            print(colored(e, "red"))
+        else:
+            print(colored("---La liste des emprunteurs---", "light_green"))
+            for elt in Bib.emprunteurs():
+                print(elt)
+    elif choix == 11:
+        try:
+            Bib.datePossibilitéEmprunt(input("Saisir le code de livre : "))
         except Exception as e:
             print(colored(e, "red"))
     elif choix == 12:

@@ -55,7 +55,7 @@ class Biblio:
         if livre and adherent and livre.livreDisponible():
             dateEmprunt = date.today()
             dateRetourPrevue = dateEmprunt + timedelta(days=3)
-            emprunt = Emprunt(livre, adherent, dateEmprunt, dateRetourPrevue)
+            emprunt = Emprunt(livre, adherent, dateEmprunt, dateRetourPrevue, dateREffective=None)
             self.__emprunts.append(emprunt)
             livre.set_nbr_exemplaire_disponible(livre.set_nbr_exemplaire_disponible()-1)
 
@@ -65,15 +65,22 @@ class Biblio:
                 elt.setDateRetourEffective(date.today)
                 elt.set_nbr_exemplaire_disponible(elt.set_nbr_exemplaire_disponible()+1)                         
     def topEmprunts(self):
-        pass
+        max=self.__emprunts[0].getLivreEmprunte().nbEmprunt
+        for elt in self.__emprunts[1:len(self.__emprunts)]:
+            if elt.getLivreEmprunte().nbEmprunt>max:
+                max=elt.getLivreEmprunte().nbEmprunt
+                livreM=elt.getLivreEmprunte()
+        return livreM
     def emprunteurs(self):
         emprunteurs=[]
         for elt in self.__emprunts:
             if elt.etatEmprunt() in ["en cours","non rendu"]:
                 if elt.getEmprunteurLivre() not in emprunteurs:
                     emprunteurs.append(elt.getEmprunteurLivre())
+        if len(emprunteurs) == 0:
+            raise Exception("la liste est vide")
         return emprunteurs
-    def datePossibilitéEmprunt(codeL):
+    def datePossibilitéEmprunt(self, codeL):
         pass 
 
     
