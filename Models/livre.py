@@ -2,12 +2,12 @@ import re
 from Auteur import*
 class livre:
     def __init__(self,code,titre,auteur,nbr_ttl_exemplaire,nbr_exemplaire_disponible):
-        template=r"^L/d{4}$"
+        template=r"^L\d{4}$"
         if not re.match(template,code):
             raise Exception("Le code inserer doit commencer par la lettre 'L' majiscule suivie par quatre chiffre ")
         elif not isinstance(auteur,Auteur):
             raise Exception("INVALIDE !!")
-        elif not isinstance(nbr_ttl_exemplaire,int) and  not isinstance(nbr_exemplaire_disponible,int):
+        elif not isinstance(nbr_ttl_exemplaire,int) or not isinstance(nbr_exemplaire_disponible,int):
             raise Exception("le nombre saisie doit etre un entier")
         elif nbr_ttl_exemplaire < 0 and nbr_exemplaire_disponible> nbr_ttl_exemplaire:
             raise Exception(" ERROR réviser les iformations donner !!")
