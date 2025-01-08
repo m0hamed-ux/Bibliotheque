@@ -3,13 +3,13 @@ from datetime import *
 from re import *
 class Adherent(Personne) :
     code=0
-    def __init__(self,nom,prenom,DayAdhésion,monthAdhésion,yearAdhésion):
-        Adherent.code +=1
-        Personne.__init__(self,nom,prenom)
-        if not date(yearAdhésion, monthAdhésion, DayAdhésion)== date.today():
+    def __init__(self,nom,prenom,dateAdhesion):
+        if not isinstance(dateAdhesion, date) or dateAdhesion > date.today():
             raise Exception ("date inscription invalide")
         else:
-            self.__DateAdhésion = date(yearAdhésion, monthAdhésion, DayAdhésion)
+            Adherent.code +=1
+            Personne.__init__(self,nom,prenom)
+            self.__DateAdhésion = dateAdhesion
             self.__code = Adherent.code
         
     def getCode(self):
