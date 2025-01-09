@@ -72,12 +72,12 @@ class Biblio:
                     raise Exception("Ce livre est deja rendu")
         raise Exception("il n'y a pas de emprunt avec ce code!")
     def topEmprunts(self):
-        max = self.__emprunts[0].getLivreEmprunte().getNbrEmprunt() 
-        livreM = self.__emprunts[0].getLivreEmprunte()
-        for elt in self.__emprunts:
-            if elt.getLivreEmprunte().getNbrEmprunt() > max:
-                max=elt.getLivreEmprunte().getNbrEmprunt() 
-                livreM=elt.getLivreEmprunte()
+        max = self.__livres[0].getNbrEmprunt() 
+        livreM = self.__livres[0]
+        for i in range(len(self.__livres)):
+            if self.__livres[i].getNbrEmprunt() > max:
+                max = self.__livres[i].getNbrEmprunt() 
+                livreM = self.__livres[i]
         return livreM
     def emprunteurs(self):
         emprunteurs=[]
