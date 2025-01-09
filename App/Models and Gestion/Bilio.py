@@ -73,11 +73,13 @@ class Biblio:
         raise Exception("il n'y a pas de emprunt avec ce code!")
     def topEmprunts(self):
         max = self.__livres[0].getNbrEmprunt() 
-        livreM = self.__livres[0]
+        livreM = []
         for i in range(len(self.__livres)):
             if self.__livres[i].getNbrEmprunt() > max:
                 max = self.__livres[i].getNbrEmprunt() 
-                livreM = self.__livres[i]
+        for i in range(len(self.__livres)):
+            if self.__livres[i].getNbrEmprunt() == max:
+                livreM.append(self.__livres[i])
         return livreM
     def emprunteurs(self):
         emprunteurs=[]

@@ -83,8 +83,9 @@ while True:
         except Exception as e:
             print(colored(e, "red"))
         else:
-            print(colored("le livre le plus demandé est : "))
-            print(Bib.topEmprunts())
+            print(colored("les livres les plus demandé sont : "))
+            for elt in Bib.topEmprunts():
+                print(elt)
     elif choix == 10:
         try: 
             Bib.emprunteurs()
