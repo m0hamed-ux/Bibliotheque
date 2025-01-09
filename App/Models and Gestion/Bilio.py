@@ -18,10 +18,7 @@ class Biblio:
         print("Les Informations d'auteur : ")
         auteur = Auteur(input("├── Nom : "), input("├── Prenom : "), input("├── Code (Ex : A1234) : "))
         nbr_ttl_exemplaire = int(input("Le nombre total des exemplaires : "))
-        nbr_exemplaire_disponible = int(input("Le nombre des exemplaires disponibles : "))
-        if nbr_ttl_exemplaire < nbr_exemplaire_disponible:
-            raise Exception("le Le nombre total des exemplaires doit etre superieur au le nombre des exemplaires disponibles")
-        lvr = livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_exemplaire_disponible)
+        lvr = livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_ttl_exemplaire)
         self.__livres.append(lvr)
     def ajouterAdherent(self):
         print("---Saisir les information de l'adherent :---")
