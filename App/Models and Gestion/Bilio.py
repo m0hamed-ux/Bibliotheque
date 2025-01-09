@@ -90,10 +90,16 @@ class Biblio:
         if len(emprunteurs) == 0:
             raise Exception("la liste est vide")
         return emprunteurs
-    def datePossibilitéEmprunt(self, codeL):
-        pass 
-
-    
+    def datePossibilitéEmprunt(self,codeL):
+        livre = self.rechercherLivre(codeL)
+        if not livre:
+            raise Exception("Livre introuvable.")
+        if livre.livreDisponible():
+            print("Le livre est disponible.")
+        for elt in self.__emprunts:
+            if elt.getLivreEmprunte() == livre and elt.etatEmprunt() == "En cours":
+                return elt.getDateRetourPrevue().strftime('%d/%m/%Y')
+        print("Il n'est pas prevu qu'il soit disponible.")
     def AfficherLivres(self):
         if len(self.__livres) == 0:
             raise Exception("la liste est vide")
