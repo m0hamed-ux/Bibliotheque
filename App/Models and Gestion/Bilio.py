@@ -94,11 +94,13 @@ class Biblio:
         livre = self.rechercherLivre(codeL)
         if not livre:
             raise Exception("Livre introuvable.")
-        if livre.livreDisponible():
+        if livre.LivreDisponible():
             print("Le livre est disponible.")
+            return
         for elt in self.__emprunts:
-            if elt.getLivreEmprunte() == livre and elt.etatEmprunt() == "En cours":
-                return elt.getDateRetourPrevue().strftime('%d/%m/%Y')
+            if elt.getLivreEmprunte() == livre and elt.etatEmprunt() == "en cours":
+                print("ce livre sera disponible le : ",elt.getDateRetourPrevue().strftime('%d/%m/%Y'))
+                return
         print("Il n'est pas prevu qu'il soit disponible.")
     def AfficherLivres(self):
         if len(self.__livres) == 0:

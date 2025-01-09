@@ -52,11 +52,13 @@ class Emprunt:
             raise Exception("La date d'emprunt est invalide!")
         else:
             self.__dateEmprunt=value
-    def getDateRetourPrevue(self,value):
+    def setDateRetourPrevue(self,value):
         if not isinstance(value,date) and value<date.today:
             raise Exception("La date de retour prévue est invalide!")
         else:
             self.__dateRetourPrevue=value
+    def getDateRetourPrevue(self):
+        return self.__dateRetourPrevue
     def setDateRetourEffective(self,value):
         if not isinstance(value,date):
             raise Exception("La date de retour effective est invalide!")

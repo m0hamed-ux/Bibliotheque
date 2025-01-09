@@ -54,14 +54,17 @@ while True:
             else:
                 print(colored("il n'y a pas de livre avec ce code!", "red"))
     elif choix == 5:
-        try:
-            codeA = int(input("saisir le code de l'Adherent : "))
-            codeL = input("saisir le code de livre : ")
-            Bib.ajouterEmprunt(codeA, codeL)
-        except Exception as e:
-            print(colored(e, "red"))
-        else:
-            print(colored("Bien ajouter", "green"))
+        # try:
+        #     codeA = int(input("saisir le code de l'Adherent : "))
+        #     codeL = input("saisir le code de livre : ")
+        #     Bib.ajouterEmprunt(codeA, codeL)
+        # except Exception as e:
+        #     print(colored(e, "red"))
+        # else:
+        #     print(colored("Bien ajouter", "green"))
+        codeA = int(input("saisir le code de l'Adherent : "))
+        codeL = input("saisir le code de livre : ")
+        Bib.ajouterEmprunt(codeA, codeL)
     elif choix == 6:
         try:
             Bib.retourEmprunt(input("saisir le code de l'Emprunt : "))
@@ -96,10 +99,11 @@ while True:
             for elt in Bib.emprunteurs():
                 print(elt)
     elif choix == 11:
-        try:
-            print(Bib.datePossibilitéEmprunt(input("Saisir le code de livre : ")))
-        except Exception as e:
-            print(colored(e, "red"))
+        # try:
+        #     Bib.datePossibilitéEmprunt(input("Saisir le code de livre : "))
+        # except Exception as e:
+        #     print(colored(e, "red"))
+        Bib.datePossibilitéEmprunt(input("Saisir le code de livre : "))
     elif choix == 12:
         Bib.Rapport()
     elif choix == 13:

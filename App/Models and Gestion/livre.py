@@ -10,7 +10,7 @@ class livre:
             raise Exception("INVALIDE !!")
         elif (not isinstance(nbr_ttl_exemplaire,int)) or (not isinstance(nbr_exemplaire_disponible,int)):
             raise Exception("le nombre saisie doit etre un entier")
-        elif nbr_ttl_exemplaire < 0 or nbr_exemplaire_disponible> nbr_ttl_exemplaire:
+        elif nbr_ttl_exemplaire < 0 or nbr_exemplaire_disponible < nbr_ttl_exemplaire:
             raise Exception(" ERROR réviser les iformations donner !!")
         else:
             self.__code=code
@@ -61,7 +61,7 @@ class livre:
             raise Exception("le nombre saisie doit etre un entier positif")
     
     def set_nbr_exemplaire_disponible(self,new_value2):
-        if isinstance(new_value2,int) and new_value2 <= self.get_nbr_ttl_exemplaire() and new_value2> 0:
+        if isinstance(new_value2,int) and new_value2 <= self.get_nbr_ttl_exemplaire():
             self.__nbr_exemplaire_disponible=new_value2
         else:
              raise Exception(" le nombre des exemplaires disponibles doit etre un entier positif inferieur au nombre des exemplaires")
