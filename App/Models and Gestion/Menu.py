@@ -97,7 +97,7 @@ while True:
                 print(elt)
     elif choix == 11:
         try:
-            Bib.datePossibilitéEmprunt(input("Saisir le code de livre : "))
+            print(Bib.datePossibilitéEmprunt(input("Saisir le code de livre : ")))
         except Exception as e:
             print(colored(e, "red"))
     elif choix == 12:
