@@ -20,7 +20,7 @@ class Biblio:
         nbr_ttl_exemplaire = int(input("Le nombre total des exemplaires : "))
         nbr_exemplaire_disponible = int(input("Le nombre des exemplaires disponibles : "))
         if nbr_ttl_exemplaire < nbr_exemplaire_disponible:
-            raise Exception("le Le nombre total des exemplaires doit etre superieur de le nombre des exemplaires disponibles")
+            raise Exception("le Le nombre total des exemplaires doit etre superieur au le nombre des exemplaires disponibles")
         lvr = livre(code, titre, auteur, nbr_ttl_exemplaire, nbr_exemplaire_disponible)
         self.__livres.append(lvr)
     def ajouterAdherent(self):
@@ -59,14 +59,21 @@ class Biblio:
             self.__emprunts.append(emprunt)
             livre.set_nbr_exemplaire_disponible(livre.get_nbr_exemplaire_disponible()-1)
             livre.addNbrEmprunt()
+            
 
     def retourEmprunt(self,codeEmprunt):
         for elt in self.__emprunts:
             if elt.getCode() == int(codeEmprunt):
-                elt.setDateRetourEffective(date.today)
-                elt.set_nbr_exemplaire_disponible(elt.set_nbr_exemplaire_disponible()+1)                         
+                if elt.etatEmprunt() != "rendu" or elt.getDateRetourEffective():
+                    elt.setDateRetourEffective(date.today())
+                    elt.getLivreEmprunte().set_nbr_exemplaire_disponible(elt.getLivreEmprunte().get_nbr_exemplaire_disponible()+1) 
+                    return True
+                else:
+                    raise Exception("Ce livre est deja rendu")
+        raise Exception("il n'y a pas de emprunt avec ce code!")
     def topEmprunts(self):
-        max=self.__emprunts[0].getLivreEmprunte().getNbrEmprunt() 
+        max = self.__emprunts[0].getLivreEmprunte().getNbrEmprunt() 
+        livreM = self.__emprunts[0].getLivreEmprunte()
         for elt in self.__emprunts:
             if elt.getLivreEmprunte().getNbrEmprunt() > max:
                 max=elt.getLivreEmprunte().getNbrEmprunt() 
@@ -76,8 +83,8 @@ class Biblio:
         emprunteurs=[]
         for elt in self.__emprunts:
             if elt.etatEmprunt() in ["en cours","non rendu"]:
-                if elt.getEmprunteurLivre() not in emprunteurs:
-                    emprunteurs.append(elt.getEmprunteurLivre())
+                if elt not in emprunteurs:
+                    emprunteurs.append(elt)
         if len(emprunteurs) == 0:
             raise Exception("la liste est vide")
         return emprunteurs

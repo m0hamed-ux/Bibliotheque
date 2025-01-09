@@ -3,7 +3,7 @@ from Bilio import *
 
 Bib = Biblio()
 while True:
-    print(colored("-------------Menu-------------", "light_green"))
+    print(colored("\n-------------Menu-------------", "light_green"))
     print(colored('''1) Ajouter un livre
 2) Ajouter un adhérent
 3) Rechercher un adhérent par code
@@ -55,9 +55,13 @@ while True:
                 print(colored("il n'y a pas de livre avec ce code!", "red"))
     elif choix == 5:
         try:
-            Bib.ajouterEmprunt(int(input("saisir le code de l'Adherent : ")), input("saisir le code de livre : "))
+            codeA = int(input("saisir le code de l'Adherent : "))
+            codeL = input("saisir le code de livre : ")
+            Bib.ajouterEmprunt(codeA, codeL)
         except Exception as e:
             print(colored(e, "red"))
+        else:
+            print(colored("Bien ajouter", "green"))
     elif choix == 6:
         try:
             Bib.retourEmprunt(input("saisir le code de l'Emprunt : "))
@@ -78,6 +82,9 @@ while True:
             Bib.topEmprunts()
         except Exception as e:
             print(colored(e, "red"))
+        else:
+            print(colored("le livre le plus demandé est : "))
+            print(Bib.topEmprunts())
     elif choix == 10:
         try: 
             Bib.emprunteurs()

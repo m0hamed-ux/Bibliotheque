@@ -61,7 +61,7 @@ class livre:
             raise Exception("le nombre saisie doit etre un entier positif")
     
     def set_nbr_exemplaire_disponible(self,new_value2):
-        if isinstance(new_value2,int) and new_value2 < self.get_nbr_ttl_exemplaire() and new_value2> 0:
+        if isinstance(new_value2,int) and new_value2 <= self.get_nbr_ttl_exemplaire() and new_value2> 0:
             self.__nbr_exemplaire_disponible=new_value2
         else:
              raise Exception(" le nombre des exemplaires disponibles doit etre un entier positif inferieur au nombre des exemplaires")
@@ -69,6 +69,6 @@ class livre:
         self.__nbrEmprunt += 1
     #methoode
     def LivreDisponible(self):
-        return self.get_nbr_exemplaire_disponible > 0
+        return self.get_nbr_exemplaire_disponible() > 0
     def __str__(self):
-        return f"---------Livre {self.__code}--------- \n Titre : {self.__titre}.\n Auteur : {self.__auteur}.\n Le nombre total des exemplaires : {self.__nbr_ttl_exemplaire}.\n Le nombre des exemplaires disponibles : {self.__nbr_exemplaire_disponible}"
+        return f"---------Livre {self.__code}--------- \n├── Titre : {self.__titre}.\n├── Auteur : {self.__auteur}.\n├── Le nombre total des exemplaires : {self.__nbr_ttl_exemplaire}.\n├── Le nombre des exemplaires disponibles : {self.__nbr_exemplaire_disponible}\n├── Nombre des emprunts : {self.getNbrEmprunt()}"

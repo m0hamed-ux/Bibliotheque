@@ -38,7 +38,7 @@ class Emprunt:
         return self.__dateRetourEffective
 #--------setter--------------    
     def setLivreEmprunte(self,value):
-        if not isinstance(value,str):
+        if not isinstance(value,livre):
             raise Exception("Le nom de livre est invalide!")
         else:
             self.__livreEmprunte=value
@@ -62,18 +62,17 @@ class Emprunt:
             raise Exception("La date de retour effective est invalide!")
         else:
             self.__dateRetourEffective=value
+    def getDateRetourEffective(self):
+        return self.__dateRetourEffective
 #---------methodes-------------
     def etatEmprunt(self):
         etat=""
-        if self.__dateRetourEffective<self.__dateRetourPrevue:
-           etat+="en cours"
-        elif self.__dateRetourEffective==self.__dateRetourPrevue:
-            etat+="rendu"
+        if self.__dateRetourEffective:
+            etat = "rendu"
+        elif self.__dateRetourPrevue >= date.today():
+           etat = "en cours"
         else:
-            etat+="non rendu"
-        print(etat)     
+            etat = "non rendu"
+        return etat
     def __str__(self):
-        return f"------Emprunt N° : {self.code}------\n├── Livre : {self.__livreEmprunte.getCode()}\n├── Emprunteur : {self.__EmprunteurLivre.getCode()}\n├── la date d’emprunt : {self.__dateEmprunt}\n├── la date de retour prévue : {self.__dateRetourPrevue}\n├── la date de retour effective : {self.__dateRetourEffective}"
-#--------test--------------
-# emp=Emprunt("ALLALI",Adherent("tri","im",8,1,2025),date(2025,1,8),date(2025,4,3),date(2025,4,5))
-# emp.etatEmprunt()
+        return f"------Emprunt N° : {self.__code}------\n├── Livre : {self.__livreEmprunte.get_code()}\n├── Emprunteur : {self.__EmprunteurLivre.getCode()}\n├── la date d’emprunt : {self.__dateEmprunt}\n├── la date de retour prévue : {self.__dateRetourPrevue}\n├── la date de retour effective : {self.__dateRetourEffective}\n├── Etat : {self.etatEmprunt()}"
